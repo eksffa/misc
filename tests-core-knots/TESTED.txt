@@ -1,0 +1,59 @@
+FUP from An update on OP_RETURN, Bitcoin Core v30, and the Core-Knots war 
+https://oakresearch.io/en/analyses/fundamentals/update-op-return-bitcoin-core-v30-core-knots-war
+
+This techn tests show product differences between Bitcoin Knots and Bitcoin Core.
+
+We download Bitcoin Core v30 which  was moved to this subdirectory /insecure-wallet-deletion/.
+You can see that it accepts the parameter -1 today. This is why it is important to check the
+source code or test the behavior empirically. [1.png]
+
+Reproducing the tests on v30 the behavior is different from v27. Testing with -1 does
+not filter. It does not become unlimited or infinite either. Looking at the source code it
+applies the default maxcap. In v30 this was bumped to 100000. [2.png]
+
+About the other parameters earlier explained but here are the results. This confirms
+any in regards to doubt "what changes". It changes this that you can see in the print.
+None of this works or exists in Core but everything is functional in Knots. [3.png]
+
+In other words in my node I have OP_RETURN allowed but OP_RETURN limited to 83 bytes.
+This was the default before the bump of the  disagreement in v30. Only 1 "full" OP_RETURN
+per transaction and OP_RETURN penalized in the mempool via policy cost. Clearly this
+is only  possible in Knots. Evidence is in the print. [3.png]
+
+We could check the sources. But if You missed the comments and explanations about changes
+and additions. I took the options that were highlighted in the source code and did a
+simple grep. It was enough for distinction in the compiled product.[4.png]
+
+The reference code changes both potential behavior, exposes additional configurations
+and allow economics adjustment on a per-node base, punishing large OP_RETURN with
+additional costs, without filtering em out or limiting application of the field to
+avoid abuses while still allowing functional extensions made by clients writing into
+the blockchain. [S3.png, S4.png, S5.png]
+
+This answers in detail both what changes and what only exists in Knots. All that exist
+in both have a behavior change from v29 to Knots. And from v30 they may change again. This
+is seen by the deprecation of datacarriersize and behavior change plus bumping up
+the maximum cap. [S1.png, S2.png]
+
+This was in the sources even commented. So I will highlight the behavior changes.
+See that "is set but are marked as deprecated" followed by  "They will be removed".
+That is why its important noticing the deprecated warning. But you never responded.
+So whatever the current behavior is when receiving 0 or -1 argument it seems that it will
+no longer be exposed to the user and will remain the hardcoded limit max cap. [S1.png]
+
+Finally see that when I applied those specific filters to allow some Ord and Runes.
+Only possible in Knots. It took time for transactions that matched to appear but then 3
+and 8 appeared respectively. See it closely. [5.png]
+
+And to remind that the reason for the change in Knots was that before v30 the behavior
+was different. Here it is on my old node. It was running for 2 years so I am not
+going to update. The very same testes, different behavior from v27 to v30. Knots was
+forked inbetween. [6.png, 7.png, 8.png]
+
+For Knots supporters, Core v30's decision to allow up to 100,000 bytes per OP_RETURN
+is a symbolic abandonment of this founding idea. As of this writting, Knots accounts
+for ~23% of the total nodes while Bitcoin Core the remaining ~76% with no third 
+competiting implementation in the free market of Bitcoin daemons.
+--
+Prenomnom, P. Freimann, and contributors.
+
